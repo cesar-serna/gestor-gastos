@@ -1,0 +1,13 @@
+{% extends 'gastos/base.html' %}
+
+{% block content %}
+
+
+    <form method="post">
+        {% csrf_token %}
+        <p>Seguro que quieres borrar el gasto {{ gasto.concepto }}</p>
+        <button type="submit" class="btn btn-primary">Sí, borrar</button>
+        <a href="{% url 'gasto_list' %}" class="btn btn-danger">Cancelar</a>
+    </form>
+
+{% endblock content %}

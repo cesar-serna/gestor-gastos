@@ -1,0 +1,12 @@
+{% extends 'gastos/base.html' %}
+
+{% block content %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="{% url 'gasto_list' %}" class="btn btn-danger">Cancelar</a>
+    </form>
+
+{% endblock content %}
