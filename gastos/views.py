@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.db.models import Sum
 from django.utils import timezone
+from django.contrib.auth.forms import UserCreationForm
 # Create your views here.
 class GastoListView(LoginRequiredMixin, ListView):
     model = Gasto
@@ -64,3 +65,8 @@ class GastoDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         gasto = self.get_object()
         return gasto.usuario == self.request.user
+    
+class RegistroUsuario(CreateView):
+    form_class = UserCreationForm
+    template_name = "registration/registro.html"
+    success_url = reverse_lazy("login")
