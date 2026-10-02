@@ -7,7 +7,8 @@ from django.urls import reverse_lazy
 from django.db.models import Sum
 from django.utils import timezone
 from django.contrib.auth.forms import UserCreationForm
-# Create your views here.
+from rest_framework import viewsets
+from .serializers import GastoSerializer
 class GastoListView(LoginRequiredMixin, ListView):
     model = Gasto
     template_name = "gasto_list.html"
@@ -70,3 +71,7 @@ class RegistroUsuario(CreateView):
     form_class = UserCreationForm
     template_name = "registration/registro.html"
     success_url = reverse_lazy("login")
+    
+class GastoViewSet(viewsets.ModelViewSet):
+    queryset = Gasto.objects.all()
+    serializer_class = GastoSerializer
