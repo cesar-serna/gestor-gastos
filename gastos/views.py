@@ -8,6 +8,7 @@ from django.db.models import Sum
 from django.utils import timezone
 from django.contrib.auth.forms import UserCreationForm
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 from .serializers import GastoSerializer
 class GastoListView(LoginRequiredMixin, ListView):
     model = Gasto
@@ -75,3 +76,4 @@ class RegistroUsuario(CreateView):
 class GastoViewSet(viewsets.ModelViewSet):
     queryset = Gasto.objects.all()
     serializer_class = GastoSerializer
+    permission_classes = [IsAuthenticated]
