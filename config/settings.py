@@ -37,9 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.humanize',
-    'gastos',
+    'django.contrib.humanize', 
     'rest_framework',
+    'rest_framework.authtoken',
+    'gastos',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +135,11 @@ MAILERS = {
 LOGIN_URL = '/cuentas/login/'
 LOGIN_REDIRECT_URL = 'gasto_list'
 LOGOUT_REDIRECT_URL = 'login'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}

@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import RedirectView
 from gastos.views import RegistroUsuario
+from rest_framework.authtoken import views as authtoken_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +26,6 @@ urlpatterns = [
     path('cuentas/registro/', RegistroUsuario.as_view(), name="registro"),
     path('cuentas/', include('django.contrib.auth.urls')),
     path('', RedirectView.as_view(url='/gastos/', permanent=True)),
+    path('api/token/', authtoken_views.obtain_auth_token, name="api_token")
     
 ]
