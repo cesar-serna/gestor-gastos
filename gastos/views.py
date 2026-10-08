@@ -7,9 +7,11 @@ from django.urls import reverse_lazy
 from django.db.models import Sum
 from django.utils import timezone
 from django.contrib.auth.forms import UserCreationForm
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
 from rest_framework.permissions import IsAuthenticated
 from .serializers import GastoSerializer
+from django_filters.rest_framework import DjangoFilterBackend
+
 class GastoListView(LoginRequiredMixin, ListView):
     model = Gasto
     template_name = "gasto_list.html"
@@ -77,3 +79,11 @@ class GastoViewSet(viewsets.ModelViewSet):
     queryset = Gasto.objects.all()
     serializer_class = GastoSerializer
     permission_classes = [IsAuthenticated]
+    
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    
+    fielterset_fields = ['fecha']
+    
+    search_fields = ['concepto']
+    
+    ordering_fields = ['fecha', 'monto']

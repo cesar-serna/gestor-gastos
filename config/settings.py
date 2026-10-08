@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize', 
     'rest_framework',
     'rest_framework.authtoken',
+    'django_filters',
     'gastos',
 ]
 
@@ -142,5 +143,9 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
-    ]
+    ],
+    
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 5,
+    
 }
